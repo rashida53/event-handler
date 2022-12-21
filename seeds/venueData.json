@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Chuck-e-cheese",
+        "capacity": 250,
+        "is_indoors": true
+    },
+    {
+        "name": "Gazebo",
+        "capacity": 20,
+        "is_indoors": false
+    },
+    {
+        "name": "Austin's Brewery",
+        "capacity": 75,
+        "is_indoors": false
+    },
+    {
+        "name": "Paradise Palace",
+        "capacity": 100,
+        "is_indoors": true
+    }
+]
