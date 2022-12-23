@@ -25,4 +25,36 @@ router.get('/', async (req, res) => {
     }
 });
 
+//add withAuth in this route
+// router.get('/profile', async (req, res) => {
+//     try {
+//         const eventData = await Event.findByPk(req.session.user_id, {
+//             attributes: { exclude: ['password'] },
+//             include: [{ model: User }],
+//         });
+//         const event = eventData.get({ plain: true });
+
+//         res.render('profile', {
+//             ...event,
+//             logged_in: true
+//         });
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+router.get('/profile', async (req, res) => {
+    try {
+        const eventData = await Event.findAll();
+        const events = eventData.map((event) => event.get({ plain: true }));
+
+        res.render('profile', {
+            events,
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+
 module.exports = router;
