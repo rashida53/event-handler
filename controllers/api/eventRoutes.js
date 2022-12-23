@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { Event } = require('../../models');
+const withAuth = require('../../utils/auth');
 
-router.post('/:id', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     try {
         const newEvent = await Event.create({
             ...req.body,

@@ -2,8 +2,8 @@ const postFormHandler = async (event) => {
     event.preventDefault();
 
     const title = document.querySelector('#event-title').value.trim();
-    const description = document.querySelector('#event-description').value.trim();
-    const event_date = document.querySelector('#event_date').value.trim();
+    const description = document.querySelector('#event-desc').value.trim();
+    const event_date = document.querySelector('#event-date').value.trim();
 
     if (title && description && event_date) {
         const response = await fetch('/api/events', {
@@ -21,4 +21,7 @@ const postFormHandler = async (event) => {
             alert('Failed to create event');
         }
     }
-}
+};
+
+document.querySelector('.post-event-form').addEventListener('submit', postFormHandler);
+

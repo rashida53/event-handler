@@ -16,11 +16,11 @@
         <article class="flex flex-col shadow my-4">
             <div class="bg-white flex flex-col justify-start p-6">
                 <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Event header</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{title}}</a>
+                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{event.title}}</a>
                 <p href="#" class="text-sm pb-3">
-                    Hosted by {{user.username}}
+                    Hosted by {{event.user.username}}
                 </p>
-                <a href="#" class="pb-6">{{description}}</a>
+                <a href="#" class="pb-6">{{event.description}}</a>
             </div>
         </article>
 

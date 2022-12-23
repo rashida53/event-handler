@@ -9,10 +9,8 @@ router.get('/', async (req, res) => {
                 {
                     model: User,
                     attributes: ['username'],
-                    model: Venue,
-                    attributes: ['name']
-                }
-            ]
+                },
+            ],
         });
         const events = eventData.map((event) => event.get({ plain: true }));
 
