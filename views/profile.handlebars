@@ -1,10 +1,10 @@
 <div class="container mx-auto flex flex-wrap py-6">
     <h3>Welcome, {{username}}!</h3>
     <div class="container">
-        <form>
+        <form class="post-event-form">
             <div>
-                <label for="event-name">Event Name:</label>
-                <input type="text" id="event-name" name="event-name" />
+                <label for="event-title">Event Name:</label>
+                <input type="text" id="event-title" name="event-title" />
             </div>
             <div>
                 <label for="event-desc">Description:</label>
@@ -20,4 +20,25 @@
         </form>
     </div>
 
+    {{#if events.length}}
+    <div class="container">
+        {{#each events as |event| }}
+        <div class="container mx-auto flex flex-wrap py-6">
+            <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+
+                <article class="flex flex-col shadow my-4">
+                    <div class="bg-white flex flex-col justify-start p-6">
+                        <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Event header</a>
+                        <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{event.title}}</a>
+                        <a href="#" class="pb-6">{{event.description}}</a>
+                    </div>
+                </article>
+
+            </section>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
 </div>
+
+<script src="/js/event.js"></script>
