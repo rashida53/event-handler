@@ -53,19 +53,28 @@ router.get('/profile', withAuth, async (req, res) => {
     }
 });
 
-// router.get('/profile', withAuth, async (req, res) => {
-//     try {
-//         const eventData = await Event.findAll();
-//         const events = eventData.map((event) => event.get({ plain: true }));
+router.get('/:id', async (req, res) => {
+    try {
+        const eventData = await Event.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['username']
+                },
+            ],
+        });
 
-//         res.render('profile', {
-//             events,
-//             logged_in: true
-//         });
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+        const event = eventData.get({ plain: true });
+
+        res.render('eventpage', {
+            ...event,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
 
 
 module.exports = router;

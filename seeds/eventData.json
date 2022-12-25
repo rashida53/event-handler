@@ -3,24 +3,28 @@
         "title": "Jordan's Birthday Bash",
         "description": "Get litty mcscritty with Jordan",
         "event_date": "2022-09-17",
+        "category_id": 2,
         "venue_id": 1
     },
     {
         "title": "Joseph's Graduation Party",
         "description": "Get litty mcscritty with Joseph",
         "event_date": "2022-10-22",
+        "category_id": 3,
         "venue_id": 4
     },
     {
         "title": "Rashida's Pizza Party",
         "description": "Get litty mcscritty with Pizza",
         "event_date": "2022-11-05",
+        "category_id": 1,
         "venue_id": 1
     },
     {
         "title": "Wahee's Homecoming",
         "description": "Get litty mcscritty with Wahee",
         "event_date": "2022-12-10",
+        "category_id": 4,
         "venue_id": 3
     }
 ]
