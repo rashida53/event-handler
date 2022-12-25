@@ -28,11 +28,9 @@ router.get('/:id', async (req, res) => {
             ],
         });
 
-        console.log(eventData);
 
         const event = eventData.get({ plain: true });
 
-        console.log(event);
 
         res.render('eventpage', {
             ...event,

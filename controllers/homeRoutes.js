@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Event, Venue } = require('../models');
+const { User, Event, Venue, Rsvp } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -53,26 +53,16 @@ router.get('/profile', withAuth, async (req, res) => {
     }
 });
 
-router.get('/:id', async (req, res) => {
+router.post('/rsvp', withAuth, async (req, res) => {
     try {
-        const eventData = await Event.findByPk(req.params.id, {
-            include: [
-                {
-                    model: User,
-                    attributes: ['username']
-                },
-            ],
+        const newCount = await Rsvp.create({
+            ...req.body,
+            user_id: req.session.user_id,
         });
-
-        const event = eventData.get({ plain: true });
-
-        res.render('eventpage', {
-            ...event,
-            logged_in: req.session.logged_in
-        });
+        console.log(newCount);
+        res.status(200).json(newCount);
     } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
+        res.status(400).json(err)
     }
 });
 

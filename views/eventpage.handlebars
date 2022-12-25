@@ -1,18 +1,37 @@
-<div class="container mx-auto flex flex-wrap py-6">
-    <section class="w-full md:w-2/3 flex flex-col items-center px-3">
+<div class="grid h-screen place-items-center">
 
-        <article class="flex flex-col shadow my-4">
-            <div class="bg-white flex flex-col justify-start p-6">
-                <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Some text</a>
-                <a href="#" class="text-4xl font-bold hover:text-gray-700 pb-4">{{title}}</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">Category: {{category.name}}</a>
-                <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">Where: {{venue.name}}</a>
-                <p href="#" class="text-sm pb-3">
-                    Host: {{user.username}}
-                </p>
-                <a href="#" class="pb-6">{{description}}</a>
+    <div class="max-w-sm rounded overflow-hidden shadow-lg">
+        <img class="w-full" src="/images/dance-party.jpg" alt="Dance party">
+        <div class="px-6 py-4">
+            <div class="font-bold text-xl mb-2">{{title}}</div>
+            <p class="text-gray-700 text-base">
+                {{description}}
+            </p>
+        </div>
+        <div class="px-6 pt-4 pb-2">
+            <span class="inline-block bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Category:
+                {{category.name}}</span>
+            <span class="inline-block bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Where:
+                {{venue.name}}</span>
+            <span class="inline-block bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Hosted
+                by: {{user.username}}</span>
+            <div class="py-3 px-6 border-t border-gray-300 text-gray-600">
+                <form class="count-form">
+                    <label for="rsvp-count"
+                        class="inline-block px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">How
+                        many will be going?</label>
+                    <input class="text-center" type="number" placeholder="Enter count" name="rsvp-count"
+                        id="rsvp-count">
+                    <button
+                        class="inline-block bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2 confirm-button"
+                        type="submit" id="{{id}}">Confirm</button>
+                </form>
             </div>
-        </article>
+        </div>
+    </div>
 
-    </section>
 </div>
+
+
+
+<script src="/js/count.js"></script>
