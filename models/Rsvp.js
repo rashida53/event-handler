@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Event extends Model { }
+class Rsvp extends Model { }
 
-Event.init(
+Rsvp.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -12,35 +12,21 @@ Event.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        description: {
-            type: DataTypes.STRING,
-        },
-        event_date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        category_id: {
+        count: {
             type: DataTypes.INTEGER,
-            references: {
-                model: 'category',
-                key: 'id',
-            },
-        },
-        venue_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'venue',
-                key: 'id',
-            },
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
+                key: 'id',
+            },
+        },
+        event_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'event',
                 key: 'id',
             },
         },
@@ -50,8 +36,8 @@ Event.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'event',
+        modelName: 'rsvp',
     }
 );
 
-module.exports = Event;
+module.exports = Rsvp;

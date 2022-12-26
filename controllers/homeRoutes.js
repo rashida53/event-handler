@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Event, Venue } = require('../models');
+const { User, Event, Rsvp } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['username'],
-                },
+                    required: false
+                }
             ],
         });
         const events = eventData.map((event) => event.get({ plain: true }));
-
+        console.log(events);
         res.render('homepage', {
             events,
             logged_in: req.session.logged_in
@@ -38,12 +38,11 @@ router.get('/profile', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
-            include: [{
-                model: Event, Venue
-            }],
+            include: [Event]
         });
         const user = userData.get({ plain: true });
 
+        console.log(user);
         res.render('profile', {
             ...user,
             logged_in: true
@@ -53,19 +52,18 @@ router.get('/profile', withAuth, async (req, res) => {
     }
 });
 
-// router.get('/profile', withAuth, async (req, res) => {
-//     try {
-//         const eventData = await Event.findAll();
-//         const events = eventData.map((event) => event.get({ plain: true }));
-
-//         res.render('profile', {
-//             events,
-//             logged_in: true
-//         });
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
+router.post('/rsvp', withAuth, async (req, res) => {
+    try {
+        const newCount = await Rsvp.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+        console.log(newCount);
+        res.status(200).json(newCount);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+});
 
 
 module.exports = router;
