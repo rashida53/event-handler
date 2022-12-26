@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Event, Venue, Rsvp } = require('../models');
+const { User, Event, Rsvp } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
@@ -8,12 +8,12 @@ router.get('/', async (req, res) => {
             include: [
                 {
                     model: User,
-                    attributes: ['username'],
-                },
+                    required: false
+                }
             ],
         });
         const events = eventData.map((event) => event.get({ plain: true }));
-
+        console.log(events);
         res.render('homepage', {
             events,
             logged_in: req.session.logged_in
@@ -38,12 +38,11 @@ router.get('/profile', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
-            include: [{
-                model: Event, Venue
-            }],
+            include: [Event]
         });
         const user = userData.get({ plain: true });
 
+        console.log(user);
         res.render('profile', {
             ...user,
             logged_in: true

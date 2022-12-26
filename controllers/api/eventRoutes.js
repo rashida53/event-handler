@@ -8,6 +8,9 @@ router.post('/', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
+
+        console.log(req.body);
+        console.log(req.session.user_id);
         res.status(200).json(newEvent);
     } catch (err) {
         res.status(400).json(err)
@@ -21,7 +24,9 @@ router.get('/:id', async (req, res) => {
                 {
                     model: User,
                 },
-                { model: Category, },
+                {
+                    model: Category,
+                },
                 {
                     model: Venue,
                 },

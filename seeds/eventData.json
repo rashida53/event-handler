@@ -1,30 +1,34 @@
 [
     {
         "title": "Jordan's Birthday Bash",
-        "description": "Get litty mcscritty with Jordan",
+        "description": "Jordan is turning 15! And it can only happen once! Come join us in celebrating Jordans birthday, we will have cake and pizza for all you hungry people. Looking forward to seeing you there!",
         "event_date": "2022-09-17",
         "category_id": 2,
-        "venue_id": 1
+        "venue_id": 1,
+        "user_id": 2
     },
     {
         "title": "Joseph's Graduation Party",
         "description": "Get litty mcscritty with Joseph",
         "event_date": "2022-10-22",
         "category_id": 3,
-        "venue_id": 4
+        "venue_id": 4,
+        "user_id": 3
     },
     {
         "title": "Rashida's Pizza Party",
         "description": "Get litty mcscritty with Pizza",
         "event_date": "2022-11-05",
         "category_id": 1,
-        "venue_id": 1
+        "venue_id": 1,
+        "user_id": 1
     },
     {
         "title": "Wahee's Homecoming",
         "description": "Get litty mcscritty with Wahee",
         "event_date": "2022-12-10",
         "category_id": 4,
-        "venue_id": 3
+        "venue_id": 3,
+        "user_id": 1
     }
 ]
