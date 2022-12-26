@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Event, User, Venue, Category } = require('../../models');
+const { Event, User, Venue, Category, Rsvp } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.post('/', withAuth, async (req, res) => {
@@ -31,9 +31,16 @@ router.get('/:id', async (req, res) => {
 
         const event = eventData.get({ plain: true });
 
+        const countData = await Rsvp.sum('count', {
+            where: {
+                event_id: req.params.id,
+            }
+        });
+
+        console.log(countData);
 
         res.render('eventpage', {
-            ...event,
+            ...event, countData,
             logged_in: req.session.logged_in
         });
     } catch (err) {
