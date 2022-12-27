@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Event, Rsvp } = require('../models');
 const withAuth = require('../utils/auth');
+const https = require('https');
+require('dotenv').config();
 
 router.get('/', async (req, res) => {
     try {
@@ -42,7 +44,6 @@ router.get('/profile', withAuth, async (req, res) => {
         });
         const user = userData.get({ plain: true });
 
-        console.log(user);
         res.render('profile', {
             ...user,
             logged_in: true
@@ -50,6 +51,41 @@ router.get('/profile', withAuth, async (req, res) => {
     } catch (err) {
         res.status(500).json(err);
     }
+});
+
+var options = {
+    hostname: 'maps.googleapis.com',
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+};
+
+router.get('/planning', withAuth, (req, res) => {
+    let data = '';
+    var dish = req.query.dish;
+    options.path = `/maps/api/place/nearbysearch/json?location=30.2672%2C-97.7431&radius=1500&type=restaurant&keyword=${dish}&key=${process.env.API_KEY}`;
+    const request = https.request(options, (response) => {
+        response.setEncoding('utf8');
+        response.on('data', (chunk) => {
+            data += chunk;
+        });
+        console.log(data);
+        response.on('end', () => {
+            let payload = JSON.parse(data);
+
+            const results = payload.results.slice(0, 5);
+            console.log(results);
+            res.render('planning', {
+                results,
+                logged_in: true
+            });
+        });
+    });
+    request.on('error', (error) => {
+        console.error(error);
+    });
+    request.end();
 });
 
 router.post('/rsvp', withAuth, async (req, res) => {
