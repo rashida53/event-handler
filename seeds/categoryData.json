@@ -1,20 +1,20 @@
 [
     {
-        "name": "Sports"
+        "name": "Dance-party"
     },
     {
-        "name": "Charity event"
+        "name": "Graduation-party"
     },
     {
-        "name": "Kids Events"
+        "name": "Kids-event"
     },
     {
-        "name": "Family Events"
+        "name": "Charity-event"
     },
     {
-        "name": "Adults Only"
+        "name": "Birthday-party"
     },
     {
-        "name": "Educational"
+        "name": "Educational-gathering"
     }
 ]

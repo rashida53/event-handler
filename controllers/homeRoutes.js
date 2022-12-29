@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Event, Rsvp } = require('../models');
+const { User, Event, Rsvp, Venue, Category } = require('../models');
 const withAuth = require('../utils/auth');
 const https = require('https');
 require('dotenv').config();
@@ -44,8 +44,23 @@ router.get('/profile', withAuth, async (req, res) => {
         });
         const user = userData.get({ plain: true });
 
+        const venueData = await Venue.findAll();
+        const venues = venueData.map((venue) => venue.get({ plain: true }));
+
+        const categoryData = await Category.findAll();
+        const categories = categoryData.map((category) => category.get({ plain: true }));
+
+        user.events.forEach(async event => {
+            const countData = await Rsvp.sum('count', {
+                where: {
+                    event_id: event.id
+                }
+            });
+            event.countData = countData;
+        })
+
         res.render('profile', {
-            ...user,
+            ...user, venues, categories,
             logged_in: true
         });
     } catch (err) {

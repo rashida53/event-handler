@@ -33,7 +33,6 @@ router.get('/:id', async (req, res) => {
             ],
         });
 
-
         const event = eventData.get({ plain: true });
 
         const countData = await Rsvp.sum('count', {
@@ -41,8 +40,6 @@ router.get('/:id', async (req, res) => {
                 event_id: req.params.id,
             }
         });
-
-        console.log(countData);
 
         res.render('eventpage', {
             ...event, countData,
@@ -53,13 +50,5 @@ router.get('/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-
-
-
-
-
-
-
 
 module.exports = router;
