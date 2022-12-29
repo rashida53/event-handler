@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Event, Rsvp, Venue, Category } = require('../models');
 const withAuth = require('../utils/auth');
 const https = require('https');
+const nodemailer = require("nodemailer");
 require('dotenv').config();
 
 router.get('/', async (req, res) => {
@@ -109,12 +110,58 @@ router.post('/rsvp', withAuth, async (req, res) => {
             ...req.body,
             user_id: req.session.user_id,
         });
-        console.log(newCount);
+
+        const eventData = await Event.findByPk(req.body.event_id, {
+            include: [
+                {
+                    model: User,
+                }
+            ],
+        });
+        const event = eventData.get({ plain: true });
+        console.log(event);
+        console.log(event.user.username);
+        sendEmailForEvent(event.user.username, event.user.email, req.body.count, event.title);
         res.status(200).json(newCount);
     } catch (err) {
+        console.log(err);
         res.status(400).json(err)
     }
 });
 
+"use strict";
+
+async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
+    // Generate test SMTP service account from ethereal.email
+    // Only needed if you don't have a real mail account for testing
+    let testAccount = await nodemailer.createTestAccount();
+
+    // create reusable transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+        host: "smtp.ethereal.email",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+            user: 'nickolas.mckenzie3@ethereal.email',
+            pass: 'xRpSbhKTxyqwMMyCTp'
+        },
+    });
+
+    // send mail with defined transport object
+    let info = await transporter.sendMail({
+        from: '"Event Handler 👻" <eventhandler@example.com>', // sender address
+        to: emailId, // list of receivers
+        subject: "RSVP alert", // Subject line
+        text: `Hey ${userName}, ${rsvpCount} people have RSVP'd for ${eventName}!`, // plain text body
+        html: `<b>Hey ${userName}, ${rsvpCount} people have RSVP'd for  ${eventName}!</b>`, // html body
+    });
+
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+    // Preview only available when sending through an Ethereal account
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+    // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+};
 
 module.exports = router;

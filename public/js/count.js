@@ -10,8 +10,6 @@ const countFormHandler = async (event) => {
             body: JSON.stringify({ count, event_id }),
             headers: {
                 'Content-Type': 'application/json',
-
-
             },
         });
         if (response.ok) {
