@@ -1,6 +1,6 @@
 <div class="container mx-auto flex flex-wrap py-6">
     <h3>Welcome, {{username}}!</h3>
-    <div class="container">
+    <div class="container border border-black-100">
         <form class="post-event-form">
             <div>
                 <label for="event-title">Event Name:</label>
@@ -15,7 +15,37 @@
                 <input type="date" id="event-date" name="event-date" />
             </div>
             <div>
+                <label for="category-list">Choose a category:</label>
+                <select id="category-list" name="category-list">
+                    {{#each categories as |category| }}
+                    <option id="{{category.id}}" value="{{category.name}}">{{category.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
+                <label for="venue-list">Choose a venue:</label>
+                <select id="venue-list" name="venue-list">
+                    {{#each venues as |venue| }}
+                    <option id="{{venue.id}}" value="{{venue.name}}">{{venue.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div>
                 <button type="submit">Create Event</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container mt-10 border border-black-100">
+        <h3>Browse catering options in this neighborhood!</h3>
+        <form class="catering-options-form">
+
+            <div>
+                <label for="dish-query">Enter a dish name</label>
+                <input type="text" id="dish-query" name="dish-query" />
+            </div>
+            <div>
+                <button type="submit">Confirm</button>
             </div>
         </form>
     </div>
@@ -31,6 +61,7 @@
                         <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Event header</a>
                         <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{event.title}}</a>
                         <a href="#" class="pb-6">{{event.description}}</a>
+                        <a href="#" class="pb-6">Currently going to your event: {{event.countData}}</a>
                     </div>
                 </article>
 

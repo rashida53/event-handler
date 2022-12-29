@@ -10,12 +10,12 @@
         "is_indoors": false
     },
     {
-        "name": "Austin's Brewery",
+        "name": "By the pool",
         "capacity": 75,
         "is_indoors": false
     },
     {
-        "name": "Paradise Palace",
+        "name": "Loewy's Park",
         "capacity": 100,
         "is_indoors": true
     }
