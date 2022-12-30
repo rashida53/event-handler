@@ -89,7 +89,7 @@ router.get('/planning', withAuth, (req, res) => {
         response.on('end', () => {
             let payload = JSON.parse(data);
 
-            const results = payload.results.slice(0, 5);
+            const results = payload.results.slice(0, 9);
             console.log(results);
             res.render('planning', {
                 results,
