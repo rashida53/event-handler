@@ -25,7 +25,12 @@
                     by: {{user.username}}</span>
                 <span
                     class="inline-block bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700 border border-blue-800 mr-2 mb-2">
-                    Currently attending: {{countData}}</span>
+                    {{#if countData}}
+                    Currently attending: {{countData}}
+                    {{else}}
+                    Currently attending: 0
+                    {{/if}}
+                </span>
             </div>
             <div class="py-3 px-6 border-t border-gray-300 text-gray-600">
                 <form class="count-form">

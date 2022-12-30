@@ -59,9 +59,14 @@
                 <article class="flex flex-col shadow my-4">
                     <div class="bg-white flex flex-col justify-start p-6">
                         <a href="#" class="text-blue-700 text-sm font-bold uppercase pb-4">Event header</a>
-                        <a href="#" class="text-3xl font-bold hover:text-gray-700 pb-4">{{event.title}}</a>
+                        <a href="/api/events/{{event.id}}"
+                            class="text-3xl font-bold hover:text-gray-700 pb-4">{{event.title}}</a>
                         <a href="#" class="pb-6">{{event.description}}</a>
+                        {{#if events.countData}}
                         <a href="#" class="pb-6">Currently going to your event: {{event.countData}}</a>
+                        {{else}}
+                        <a href="#" class="pb-6">Currently going to your event: 0</a>
+                        {{/if}}
                     </div>
                 </article>
 
