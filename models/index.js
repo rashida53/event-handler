@@ -3,6 +3,7 @@ const Event = require('./Event');
 const Venue = require('./Venue');
 const Category = require('./category');
 const Rsvp = require('./Rsvp');
+const Errand = require('./Errand');
 
 Venue.hasMany(Event, {
     foreignKey: 'venue_id',
@@ -44,4 +45,12 @@ Rsvp.belongsTo(Event, {
     foreignKey: 'event_id',
 });
 
-module.exports = { User, Event, Venue, Category, Rsvp };
+User.hasMany(Errand, {
+    foreignKey: 'user_id',
+});
+
+Errand.belongsTo(User, {
+    foreignKey: 'user_id',
+});
+
+module.exports = { User, Event, Venue, Category, Rsvp, Errand };

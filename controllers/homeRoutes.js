@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User, Event, Rsvp, Venue, Category } = require('../models');
+const { User, Event, Rsvp, Venue, Category, Errand } = require('../models');
 const withAuth = require('../utils/auth');
 const https = require('https');
 const nodemailer = require("nodemailer");
@@ -12,14 +12,26 @@ router.get('/', async (req, res) => {
                 {
                     model: User,
                     required: false,
+                },
+                {
                     model: Category,
                 }
             ],
         });
         const events = eventData.map((event) => event.get({ plain: true }));
         console.log(events);
+
+        const errandData = await Errand.findAll({
+            include: [
+                {
+                    model: User,
+                }
+            ],
+        });
+        const errands = errandData.map((errand) => errand.get({ plain: true }));
+
         res.render('homepage', {
-            events,
+            events, errands,
             logged_in: req.session.logged_in
         });
     } catch (err) {
@@ -51,7 +63,12 @@ router.get('/profile', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
-            include: [Event]
+            include: [
+                {
+                    model: Event,
+                    include: Category
+                }
+            ]
         });
         const user = userData.get({ plain: true });
 
