@@ -1,7 +1,7 @@
 const User = require('./User');
 const Event = require('./Event');
 const Venue = require('./Venue');
-const Category = require('./category');
+const Category = require('./Category');
 const Rsvp = require('./Rsvp');
 const Errand = require('./Errand');
 
