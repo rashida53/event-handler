@@ -1,4 +1,4 @@
-const { DELETE } = require("sequelize/types/query-types");
+
 
 const postFormHandler = async (event) => {
     event.preventDefault();
@@ -96,4 +96,4 @@ const delButtonHandler = async (event) => {
 document.querySelector('.post-event-form').addEventListener('submit', postFormHandler);
 document.querySelector('.create-errand-form').addEventListener('submit', errandFormHandler);
 document.querySelector('.catering-options-form').addEventListener('submit', dishFormHandler);
-document.querySelector('.events-list').addEventListener('submit', delButtonHandler);
+document.querySelector('.events-list').addEventListener('click', delButtonHandler);
