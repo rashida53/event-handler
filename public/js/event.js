@@ -1,3 +1,5 @@
+
+
 const postFormHandler = async (event) => {
     event.preventDefault();
 
@@ -39,8 +41,6 @@ const errandFormHandler = async (event) => {
     const contact = document.querySelector('#contact').value.trim();
     const pay = document.querySelector('#pay').value.trim();
 
-
-
     if (name && contact && pay) {
         const response = await fetch('/errands', {
             method: 'POST',
@@ -75,9 +75,25 @@ openBtn.onclick = function () {
 
 closeBtn.onclick = function () {
     modal.style.display = 'none';
+}
+
+const delButtonHandler = async (event) => {
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
+
+        const response = await fetch(`api/events/${id}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            document.location.replace('/profile');
+        } else {
+            alert('Failed to cancel event');
+        }
+    }
 };
 
 document.querySelector('.post-event-form').addEventListener('submit', postFormHandler);
 document.querySelector('.create-errand-form').addEventListener('submit', errandFormHandler);
 document.querySelector('.catering-options-form').addEventListener('submit', dishFormHandler);
-
+document.querySelector('.events-list').addEventListener('click', delButtonHandler);
