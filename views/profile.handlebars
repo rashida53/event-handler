@@ -155,23 +155,9 @@
             </form>
         </div>
 
-
-        {{!-- <div class="container mt-10 border border-black-100">
-            <h3>Browse catering options in this neighborhood!</h3>
-            <form class="catering-options-form">
-
-                <div>
-                    <label for="dish-query">Enter a dish name</label>
-                    <input type="text" id="dish-query" name="dish-query" />
-                </div>
-                <div>
-                    <button type="submit">Confirm</button>
-                </div>
-            </form>
-        </div> --}}
     </section>
     {{#if events.length}}
-    <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
+    <aside class="w-full md:w-1/3 flex flex-col items-center px-3 events-list">
         <h1 class="text-center text-2xl text-gray-700 font-bold">Your Events</h2>
 
             <div class="w-full bg-white shadow flex flex-col my-4 p-6">
@@ -190,6 +176,9 @@
                             {{else}}
                             <a href="#" class="pb-6">Currently going to your event: 0</a>
                             {{/if}}
+                            <div class="col-md-4">
+                                <button class="btn btn-sm btn-danger" data-id="{{event.id}}">Cancel Event</button>
+                            </div>
                         </div>
                     </article>
 
