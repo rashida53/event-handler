@@ -1,6 +1,11 @@
 [
     {
-        "name": "Chuck-e-cheese",
+        "name": "Loewy's Park",
+        "capacity": 100,
+        "is_indoors": true
+    },
+    {
+        "name": "Roland's amphitheatre",
         "capacity": 250,
         "is_indoors": true
     },
@@ -10,13 +15,18 @@
         "is_indoors": false
     },
     {
-        "name": "Austin's Brewery",
+        "name": "By the pool",
         "capacity": 75,
         "is_indoors": false
     },
     {
-        "name": "Paradise Palace",
-        "capacity": 100,
+        "name": "Lawn by Lady bird lake",
+        "capacity": 150,
+        "is_indoors": false
+    },
+    {
+        "name": "Private Residence",
+        "capacity": 40,
         "is_indoors": true
     }
 ]

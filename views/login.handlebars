@@ -1,0 +1,111 @@
+<section class="h-screen">
+    <div class="px-6 h-full text-gray-800">
+        <div class="flex xl:justify-center lg:justify-between justify-center items-center flex-wrap h-full g-6">
+            <div class="grow-0 shrink-1 md:shrink-0 basis-auto xl:w-6/12 lg:w-6/12 md:w-9/12 mb-12 md:mb-0">
+                <img src="/images/login-photo-2.jpg" class="w-full" alt="Sample image" />
+            </div>
+            <div class="xl:ml-20 xl:w-5/12 lg:w-5/12 md:w-8/12 mb-12 md:mb-0">
+                <form class="login-form">
+                    <div class="flex flex-row items-center justify-center lg:justify-start">
+                        <p class="text-lg text-center mb-0 mr-4">Sign in</p>
+
+                    </div>
+
+                    <div
+                        class="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
+                        <p class="text-center font-semibold mx-4 mb-0"></p>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="mb-6">
+                        <input type="text"
+                            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="email-login" placeholder="Email address" />
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="mb-6">
+                        <input type="password"
+                            class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            id="password-login" placeholder="Password" />
+                    </div>
+
+                    <div class="flex justify-between items-center mb-6">
+                        <div class="form-group form-check">
+                            <input type="checkbox"
+                                class="form-check-input appearance-none h-4 w-4 border border-gray-300 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
+                                id="password-checkbox" onclick="showPassword()" />
+                            <label class="form-check-label inline-block text-gray-800" for="password-checkbox">Show
+                                password</label>
+                        </div>
+                        <a href="#!" class="text-gray-800">Forgot password?</a>
+                    </div>
+
+                    <div class="text-center lg:text-left">
+                        <button type="submit"
+                            class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+                            Login
+                        </button>
+                        <p class="text-sm font-semibold mt-2 pt-1 mb-0">
+                            Don't have an account?
+                            <a href="/signup"
+                                class="text-red-600 hover:text-red-700 focus:text-red-700 transition duration-200 ease-in-out">Sign
+                                up now</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+{{!-- <div class="row">
+    <div class="col-md-6">
+        <h2>Login</h2>
+
+        <form class="form login-form">
+            <div class="form-group">
+                <label for="email-login">email:</label>
+                <input class="form-input" type="text" id="email-login" />
+            </div>
+            <div class="form-group">
+                <label for="password-login">password:</label>
+                <input class="form-input" type="password" id="password-login" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">login</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Signup</h2>
+
+        <form class="form signup-form">
+            <div class="form-group">
+                <label for="name-signup">username:</label>
+                <input class="form-input" type="text" id="name-signup" />
+            </div>
+            <div class="form-group">
+                <label for="email-signup">email:</label>
+                <input class="form-input" type="text" id="email-signup" />
+            </div>
+            <div class="form-group">
+                <label for="password-signup">password:</label>
+                <input class="form-input" type="password" id="password-signup" />
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">signup</button>
+            </div>
+        </form>
+    </div>
+</div> --}}
+
+<script src="/js/login.js"></script>

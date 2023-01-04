@@ -1,6 +1,6 @@
 [
     {
-        "username": "Jordan",
+        "username": "Sal",
         "email": "sal@hotmail.com",
         "password": "password12345"
     },
@@ -12,6 +12,21 @@
     {
         "username": "Amiko",
         "email": "amiko2k20@aol.com",
+        "password": "password12345"
+    },
+    {
+        "username": "Tameka",
+        "email": "123imcool@yahoo.com",
+        "password": "password12345"
+    },
+    {
+        "username": "coolguy",
+        "email": "joedude@aol.com",
+        "password": "password12345"
+    },
+    {
+        "username": "horsegirl",
+        "email": "emilyh_3@gmail.com",
         "password": "password12345"
     }
 ]

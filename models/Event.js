@@ -23,6 +23,13 @@ Event.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
+        category_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'category',
+                key: 'id',
+            },
+        },
         venue_id: {
             type: DataTypes.INTEGER,
             references: {
