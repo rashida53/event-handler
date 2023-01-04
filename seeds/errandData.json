@@ -3,49 +3,49 @@
         "name": "Lawn mowing",
         "contact": "512763829",
         "pay": "50.00",
-        "img_name": "lawn-mowing",
+        "img_name": "Lawn-mowing",
         "user_id": 2
     },
     {
         "name": "Pet sitting",
         "contact": "512453722",
         "pay": "30.00",
-        "img_name": "pet-sitting",
+        "img_name": "Pet-sitting",
         "user_id": 1
     },
     {
         "name": "Car wash",
         "contact": "6403034732",
         "pay": "35.00",
-        "img_name": "car-wash",
+        "img_name": "Car-wash",
         "user_id": 3
     },
     {
         "name": "Tutoring",
         "contact": "7593773265",
         "pay": "75.00",
-        "img_name": "tutoring",
+        "img_name": "Tutoring",
         "user_id": 2
     },
     {
         "name": "House sitting",
         "contact": "64043826932",
         "pay": "55.00",
-        "img_name": "house-sitting",
+        "img_name": "House-sitting",
         "user_id": 1
     },
     {
         "name": "Gardening",
         "contact": "7593773265",
         "pay": "25.00",
-        "img_name": "gardening",
+        "img_name": "Gardening",
         "user_id": 2
     },
     {
         "name": "Fetch medicines",
         "contact": "7593773265",
         "pay": "25.00",
-        "img_name": "fetch-medicine",
+        "img_name": "Fetch-medicine",
         "user_id": 2
     }
 ]

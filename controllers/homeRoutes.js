@@ -3,11 +3,18 @@ const { User, Event, Rsvp, Venue, Category, Errand } = require('../models');
 const withAuth = require('../utils/auth');
 const https = require('https');
 const nodemailer = require("nodemailer");
+const moment = require('moment');
+const { Op } = require('sequelize')
 require('dotenv').config();
 
 router.get('/', async (req, res) => {
     try {
         const eventData = await Event.findAll({
+            where: {
+                event_date: {
+                    [Op.gte]: moment().format('YYYY-MM-DD')
+                }
+            },
             include: [
                 {
                     model: User,
@@ -18,6 +25,7 @@ router.get('/', async (req, res) => {
                 }
             ],
         });
+
         const events = eventData.map((event) => event.get({ plain: true }));
         console.log(events);
 
@@ -78,6 +86,9 @@ router.get('/profile', withAuth, async (req, res) => {
         const categoryData = await Category.findAll();
         const categories = categoryData.map((category) => category.get({ plain: true }));
 
+        const errandData = await Errand.findAll();
+        const errands = errandData.map((errand) => errand.get({ plain: true }));
+
         user.events.forEach(async event => {
             const countData = await Rsvp.sum('count', {
                 where: {
@@ -88,7 +99,7 @@ router.get('/profile', withAuth, async (req, res) => {
         })
 
         res.render('profile', {
-            ...user, venues, categories,
+            ...user, venues, categories, errands,
             logged_in: true
         });
     } catch (err) {
@@ -183,5 +194,20 @@ async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
 
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 };
+
+router.post('/errands', withAuth, async (req, res) => {
+    try {
+        const newErrand = await Errand.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+
+        console.log(req.body);
+        console.log(req.session.user_id);
+        res.status(200).json(newErrand);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+});
 
 module.exports = router;
