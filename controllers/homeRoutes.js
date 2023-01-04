@@ -1,25 +1,45 @@
 const router = require('express').Router();
-const { User, Event, Rsvp, Venue, Category } = require('../models');
+const { User, Event, Rsvp, Venue, Category, Errand } = require('../models');
 const withAuth = require('../utils/auth');
 const https = require('https');
 const nodemailer = require("nodemailer");
+const moment = require('moment');
+const { Op } = require('sequelize')
 require('dotenv').config();
 
 router.get('/', async (req, res) => {
     try {
         const eventData = await Event.findAll({
+            where: {
+                event_date: {
+                    [Op.gte]: moment().format('YYYY-MM-DD')
+                }
+            },
             include: [
                 {
                     model: User,
                     required: false,
+                },
+                {
                     model: Category,
                 }
             ],
         });
+
         const events = eventData.map((event) => event.get({ plain: true }));
         console.log(events);
+
+        const errandData = await Errand.findAll({
+            include: [
+                {
+                    model: User,
+                }
+            ],
+        });
+        const errands = errandData.map((errand) => errand.get({ plain: true }));
+
         res.render('homepage', {
-            events,
+            events, errands,
             logged_in: req.session.logged_in
         });
     } catch (err) {
@@ -51,7 +71,12 @@ router.get('/profile', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
             attributes: { exclude: ['password'] },
-            include: [Event]
+            include: [
+                {
+                    model: Event,
+                    include: Category
+                }
+            ]
         });
         const user = userData.get({ plain: true });
 
@@ -60,6 +85,9 @@ router.get('/profile', withAuth, async (req, res) => {
 
         const categoryData = await Category.findAll();
         const categories = categoryData.map((category) => category.get({ plain: true }));
+
+        const errandData = await Errand.findAll();
+        const errands = errandData.map((errand) => errand.get({ plain: true }));
 
         user.events.forEach(async event => {
             const countData = await Rsvp.sum('count', {
@@ -71,7 +99,7 @@ router.get('/profile', withAuth, async (req, res) => {
         })
 
         res.render('profile', {
-            ...user, venues, categories,
+            ...user, venues, categories, errands,
             logged_in: true
         });
     } catch (err) {
@@ -166,5 +194,20 @@ async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
 
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 };
+
+router.post('/errands', withAuth, async (req, res) => {
+    try {
+        const newErrand = await Errand.create({
+            ...req.body,
+            user_id: req.session.user_id,
+        });
+
+        console.log(req.body);
+        console.log(req.session.user_id);
+        res.status(200).json(newErrand);
+    } catch (err) {
+        res.status(400).json(err)
+    }
+});
 
 module.exports = router;

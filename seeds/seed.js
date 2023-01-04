@@ -1,10 +1,11 @@
 const sequelize = require('../config/connection');
-const { User, Event, Venue, Category } = require('../models');
+const { User, Event, Venue, Category, Errand } = require('../models');
 
 const userData = require('./userData.json');
 const eventData = require('./eventData.json');
 const venueData = require('./venueData.json');
 const categoryData = require('./categoryData.json');
+const errandData = require('./errandData.json');
 
 const seedDatabase = async () => {
     await sequelize.sync({ force: true });
@@ -29,6 +30,12 @@ const seedDatabase = async () => {
             ...event,
         });
     };
+
+    for (const errand of errandData) {
+        await Errand.create({
+            ...errand,
+        });
+    }
 
 
 

@@ -28,14 +28,56 @@ const postFormHandler = async (event) => {
     }
 };
 
+const errandFormHandler = async (event) => {
+    event.preventDefault();
+
+    const errandOptions = document.querySelector('#errand-list');
+    const name = errandOptions.options[errandOptions.selectedIndex].value;
+
+    const img_name = name.replaceAll(' ', '-');
+
+    const contact = document.querySelector('#contact').value.trim();
+    const pay = document.querySelector('#pay').value.trim();
+
+
+
+    if (name && contact && pay) {
+        const response = await fetch('/errands', {
+            method: 'POST',
+            body: JSON.stringify({ name, contact, pay, img_name }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (response.ok) {
+            document.location.replace('/profile');
+        } else {
+            alert('Failed to create errand');
+        }
+    }
+};
+
 const dishFormHandler = async (event) => {
     event.preventDefault();
     const dish = document.querySelector('#dish-query').value.trim();
     if (dish) {
         document.location.replace(`/planning?dish=${dish}`);
     }
-}
+};
+
+let modal = document.getElementById('modal');
+let openBtn = document.getElementById('open-btn');
+let closeBtn = document.getElementById('close-btn');
+
+openBtn.onclick = function () {
+    modal.style.display = 'block';
+};
+
+closeBtn.onclick = function () {
+    modal.style.display = 'none';
+};
 
 document.querySelector('.post-event-form').addEventListener('submit', postFormHandler);
+document.querySelector('.create-errand-form').addEventListener('submit', errandFormHandler);
 document.querySelector('.catering-options-form').addEventListener('submit', dishFormHandler);
 
