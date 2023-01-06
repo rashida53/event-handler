@@ -4,6 +4,7 @@
 
         <div class="p-5">
             <div class="mt-8 p-4">
+                {{!-- form to create new event --}}
                 <form class="post-event-form">
                     <div>
                         <div class="flex flex-col md:flex-row">
@@ -34,6 +35,7 @@
                                 </div>
                             </div>
                             <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                                {{!-- Category dropdown options pulled from database --}}
                                 <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Choose a
                                     Category</div>
                                 <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
@@ -48,6 +50,7 @@
                                 </div>
                             </div>
                             <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                                {{!-- Venue dropdown options pulled from database --}}
                                 <div class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"> Choose a
                                     Venue</div>
                                 <div class="bg-white my-2 p-1 flex border border-gray-200 rounded svelte-1l8159u">
@@ -75,7 +78,7 @@
             </div>
         </div>
 
-
+        {{!-- modal to add an errand --}}
         <div class="py-10">
             <button data-modal-target="modal" data-modal-toggle="modal"
                 class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
@@ -84,11 +87,9 @@
             </button>
         </div>
 
-        <!-- Main modal -->
         <div id="modal" tabindex="-1" aria-hidden="true"
             class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
             <div class="relative w-full h-full max-w-md md:h-auto">
-                <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                     <button type="button"
                         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white"
@@ -103,6 +104,7 @@
                     </button>
                     <div class="px-6 py-6 lg:px-8">
                         <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Get work done in a jiffy</h3>
+                        {{!-- create a new errand form --}}
                         <form class="space-y-6 create-errand-form">
                             <div>
                                 <label for="errand-list"
@@ -140,8 +142,7 @@
             </div>
         </div>
 
-
-
+        {{!-- input takes in dish name to return restaurants in neighborhood through third party API --}}
         <div class="w-1/2 bg-blue-800 rounded shadow-2xl p-8 m-4">
             <h1 class="block w-full text-center text-white text-2xl font-bold mb-6">Browse catering options in
                 this neighborhood!</h1>
@@ -156,6 +157,7 @@
         </div>
 
     </section>
+    {{!-- renders events that the user has hosted --}}
     {{#if events.length}}
     <aside class="w-full md:w-1/3 flex flex-col items-center px-3">
         <h1 class="text-center text-2xl text-gray-700 font-bold">Your Events</h2>
