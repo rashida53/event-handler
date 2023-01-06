@@ -71,7 +71,10 @@ let openBtn = document.getElementById('open-btn');
 let closeBtn = document.getElementById('close-btn');
 
 openBtn.onclick = function () {
-    modal.style.display = 'block';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+
 };
 
 closeBtn.onclick = function () {
