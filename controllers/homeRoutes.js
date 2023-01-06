@@ -7,6 +7,7 @@ const moment = require('moment');
 const { Op } = require('sequelize')
 require('dotenv').config();
 
+// renders homepage with all events and errands
 router.get('/', async (req, res) => {
     try {
         const eventData = await Event.findAll({
@@ -47,7 +48,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-
+// login route
 router.get('/login', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/profile');
@@ -57,6 +58,7 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
+// signup route
 router.get('/signup', (req, res) => {
     if (req.session.logged_in) {
         res.redirect('/profile');
@@ -66,7 +68,7 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-//add withAuth in this route
+// renders profile page with users events, count of people going to that event, category and venue data for dropdown in create event form
 router.get('/profile', withAuth, async (req, res) => {
     try {
         const userData = await User.findByPk(req.session.user_id, {
@@ -107,6 +109,7 @@ router.get('/profile', withAuth, async (req, res) => {
     }
 });
 
+
 var options = {
     hostname: 'maps.googleapis.com',
     method: 'GET',
@@ -115,6 +118,7 @@ var options = {
     },
 };
 
+// renders planning page with nearby restaurants using google api
 router.get('/planning', withAuth, (req, res) => {
     let data = '';
     var dish = req.query.dish;
@@ -142,6 +146,7 @@ router.get('/planning', withAuth, (req, res) => {
     request.end();
 });
 
+// posts count of rsvp for a particular event to the rsvp table
 router.post('/rsvp', withAuth, async (req, res) => {
     try {
         const newCount = await Rsvp.create({
@@ -167,8 +172,7 @@ router.post('/rsvp', withAuth, async (req, res) => {
     }
 });
 
-"use strict";
-
+// function to send email to host of an event each time there is a new RSVP
 async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
     let testAccount = await nodemailer.createTestAccount();
 
@@ -195,6 +199,7 @@ async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
 };
 
+// post new errand
 router.post('/errands', withAuth, async (req, res) => {
     try {
         const newErrand = await Errand.create({

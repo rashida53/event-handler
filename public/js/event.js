@@ -50,6 +50,7 @@ const errandFormHandler = async (event) => {
             },
         });
         if (response.ok) {
+            alert('Created errand successfully');
             document.location.replace('/profile');
         } else {
             alert('Failed to create errand');

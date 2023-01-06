@@ -1,3 +1,4 @@
+// takes rsvp count from user for an event and posts to database
 const countFormHandler = async (event) => {
     event.preventDefault();
 

@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Event, User, Venue, Category, Rsvp } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// post new event
 router.post('/', withAuth, async (req, res) => {
     try {
         const newEvent = await Event.create({
@@ -17,6 +18,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+// get a single event
 router.get('/:id', async (req, res) => {
     try {
         const eventData = await Event.findByPk(req.params.id, {
@@ -51,6 +53,7 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// delete event
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const eventData = await Event.destroy({
