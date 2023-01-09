@@ -35,13 +35,16 @@
             <nav>
                 <ul class="flex items-center justify-between font-bold text-sm text-white uppercase no-underline">
 
-
+                    <li><img src="/images/logo.png"
+                            class="hover:text-gray-200 hover:underline px-4 object-scale-down h-30 w-20"></img></li>
+                    <li><a href="/" class="hover:text-gray-200 hover:underline px-4">Home</a></li>
                     {{#if logged_in}}
-                    <li><a href="/" class="hover:text-gray-200 hover:underline px-4">Home</a></li>
                     <li><a href="/profile" class="hover:text-gray-200 hover:underline px-4">Profile</a></li>
-                    <li><a id="logout" class="hover:text-gray-200 hover:underline px-4">Logout</a></li>
+                    <li><a id="logout" class="hover:text-gray-200 hover:underline px-4">Logout</a>
+                    </li>
                     {{else}}
-                    <li><a href="/" class="hover:text-gray-200 hover:underline px-4">Home</a></li>
+
+
                     <li><a href="/profile" class="hover:text-gray-200 hover:underline px-4">Profile</a></li>
                     <li><a href="/login" class="hover:text-gray-200 hover:underline px-4">Log In</a></li>
 

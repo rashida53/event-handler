@@ -9,9 +9,11 @@ This repository follows the MVC paradigm and thus contains the routes, views, ja
 - Get all errands
 - Create and delete an event
 - Create an errand
+- RSVP for an event
 - Get count for events
 - Post email through ethereal
 - Get nearby restaurants through google API
+- Filter out past events
 
 >## Table of contents
 

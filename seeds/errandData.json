@@ -25,21 +25,21 @@
         "contact": "7593773265",
         "pay": "75.00",
         "img_name": "Tutoring",
-        "user_id": 2
+        "user_id": 4
     },
     {
         "name": "House sitting",
         "contact": "64043826932",
         "pay": "55.00",
         "img_name": "House-sitting",
-        "user_id": 1
+        "user_id": 6
     },
     {
         "name": "Gardening",
         "contact": "7593773265",
         "pay": "25.00",
         "img_name": "Gardening",
-        "user_id": 2
+        "user_id": 5
     },
     {
         "name": "Fetch medicines",
