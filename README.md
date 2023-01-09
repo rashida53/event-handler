@@ -15,6 +15,8 @@ This repository follows the MVC paradigm and thus contains the routes, views, ja
 - Get nearby restaurants through google API
 - Filter out past events
 
+### This application has been deployed on heroku and can be viewed [here](https://arcane-hollows-20210.herokuapp.com)
+
 >## Table of contents
 
 - [Installation](#installation)
