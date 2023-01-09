@@ -174,7 +174,6 @@ router.post('/rsvp', withAuth, async (req, res) => {
 
 // function to send email to host of an event each time there is a new RSVP
 async function sendEmailForEvent(userName, emailId, rsvpCount, eventName) {
-    let testAccount = await nodemailer.createTestAccount();
 
     let transporter = nodemailer.createTransport({
         host: "smtp.ethereal.email",
