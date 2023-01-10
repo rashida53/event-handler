@@ -51,6 +51,13 @@ In order to test this application and view existing events and errands, one can 
 `password`: password12345
 
 
+The RSVP feature sends email to the host of the event to notify of the count of attendees. The login credentials to view the email on ethereal are as follows:
+
+`username`: nickolas.mckenzie3@ethereal.email
+`password`: xRpSbhKTxyqwMMyCTp
+
+Click [here](https://ethereal.email/) to open ethereal
+
 ## [**License**](#table-of-contents)
 This project is licensed under the [MIT](https://opensource.org/licenses/MIT) license.
 
